@@ -10,6 +10,7 @@ author:
 ---
 
 #Introducció
+
 En aquest projecte final de l'assignatura hem creat una aplicacio d'Internet on un ususari pot veure a temps real totes les dades dels seus servidors.
 Podrem veure percentatges de espai lliure o utilitzat en els servidors, utilitzacio de la xarxa, utilitzacio de la cpu o tambe els processos que hi corren.
 
@@ -43,15 +44,7 @@ En el modul **server** primerament rebrem el mon, el sistema operatiu actiu, la 
 
 En aquests moduls practicament farem el mateix en tots. De tota la informació que ens arriba agafem la que ens sigui necessaria segons el modul, i fem la serva relació amb la resta de moduls. Per exemple en el modul **Disk** ens interes el seu espai lliure, total, ocupat i el percentatge corresponent, i despres fem la relacio amb el modul **Server** i **Time**
 
-\lstinputlisting[language=php , caption="Cpu.php"]{./Moni/app/Cpu.php}
-
 \lstinputlisting[language=php , caption="Disk.php"]{./Moni/app/Disk.php}
-
-\lstinputlisting[language=php , caption="Mem.php"]{./Moni/app/Mem.php}
-
-\lstinputlisting[language=php , caption="Net.php"]{./Moni/app/Net.php}
-
-\lstinputlisting[language=php , caption="Pid.php"]{./Moni/app/Pid.php}
 
 ##Address
 
@@ -60,3 +53,7 @@ En aquests moduls practicament farem el mateix en tots. De tota la informació q
 ##Time
 
 \lstinputlisting[language=php , caption="Time.php"]{./Moni/app/Time.php}
+
+##Controller
+
+\lstinputlisting[language=php , caption="Time.php"]{./Moni/app/Http/MoniController.php}
