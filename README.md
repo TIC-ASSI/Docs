@@ -11,38 +11,46 @@ author:
 
 #Introducció
 
-En aquest projecte final de l'assignatura hem creat una aplicacio d'Internet on un ususari pot veure a temps real totes les dades dels seus servidors.
-Podrem veure percentatges de espai lliure o utilitzat en els servidors, utilitzacio de la xarxa, utilitzacio de la cpu o tambe els processos que hi corren.
+En aquest projecte final de l'assignatura hem creat una aplicació d'Internet on un usuari pot veure a temps real totes les dades dels seus servidors.
+Podrem veure percentatges d'espai lliure o utilitzat en els servidors, utilització de la xarxa, utilització de la cpu o també els processos que hi corren.
 
-Principalment s'han d'instalar una serie de paquets que posem a continuacio:
+Per poder dur a terme aquest projecte, hem instal·lat els paquets llistats en el fitxer a les nostres màquines per: Intal\·lar les llibreries necessàries per poder treballar amb la framework de Laravel i per poder obtenir mitjançant un script de python3 les dades del servidor.
+
+Arxiu que ens permet instal·lar tot el necessari per dur a terme el monitoratge i treballar amb la frame:
 
 \lstinputlisting[language=bash , caption="installer"]{installer}
 
-Els paquets necessaris que hem instalat, son el apache pel servidor, mySQL per tractar la base de dades, PHP per poder tractar les dades i fer la app, i finalment python3 **sha de completar**
+Aquest arxiu instal·larà a grans trets: Python3.6 en l'última versió disponible i la llibreria psutils per poder obtenir les dades del monitoratge; PHP a una versió suficient per poder usar Laravel, mysql per poder gestionar la base de dades, el composer també per Laravel i finalment apache2 per si es vol configurar aquest pel projecte.
 
 #Python
 
+Aprofitant la llibreria de psutils, obtenim les dades del servidor. Amb la comanda psutil.disk_partitions() obtenim les dades del disc, amb psutil.net_connections() obtenim dades de la connexió, amb la comanda psutil.virtual_memory() i amb psutil.net_if_addrs() obtenim dades de les adreces de la xarxa.
 
 #PHP
-Un cop ens van arriban les dades les hem de classificar segons el que volguem veure. Hem creat diferents moduls on a cada modul farem diferents relacions i clasificarem les dades:
+
+Malgrat podríem fer aquest projecte únicament amb aquest llenguatge però, l'utilitzarem principalment per utilitzar la framework.
+
+Principalment usarem la comanda: php artisan *comand* per poder fer moltes coses.
+
+Un cop ens van arribant les dades des de l'arxiu de python, les hem de classificar segons el que vulguem veure. Hem creat diferents mòduls on a cada mòdul farem diferents relacions i classificarem les dades:
 
 ##User
 
-Principalment tenim el modul **user**, on demanem al usuari que ens dongui un nom, el seu email i la contrasenya, i crearem un token (anoment api_token).
+Principalment tenim el modul **user**, on demanem a l'usuari que ens doni un nom, el seu email i la contrasenya, i crearem un token (anoment api_token).
 
-Per fer-ho segur tenim la funcio *setPasswordAttribute*, que aqui creem el hash de la contrasenya. Per ultim veiem la ultima funcio *servers*, on fem la relacio amb l'esquema anterior, es a dir, un usuari pot tenir varis servidors.
+Per fer-ho segur tenim la funcio *setPasswordAttribute*, que aquí creem el hash de la contrasenya. Per últim veiem l'última funció *servers*, on fem la relació amb l'esquema anterior, és a dir, un usuari pot tenir diversos servidors.
 
 \lstinputlisting[language=php , caption="User.php"]{./Moni/app/User.php}
 
 ##Server
 
-En el modul **server** primerament rebrem el mon, el sistema operatiu actiu, la seva versio, el processador, node i la plataforma utilitzada, i tot un seguit de funcions on podem veure la realcio amb la resta de moduls. Primer tenim la relacio amb user, on veiem que el servidor nomes correspon  a un unic usuari, pero les seguents relacions podem comprobar com per exemple un servidor pot tenir varis processos (*return $this->hasMany(Pid::class);*), i aixi amb els moduls **net**, **Disk**, **Cpu**, **Mem** i **Net**.
+En el modul **server** primerament rebrem el món, el sistema operatiu actiu, la seva versió, el processador, node i la plataforma utilitzada, i tot un seguit de funcions on podem veure la relació amb la resta de mòduls. Primer tenim la relació amb user, on veiem que el servidor només correspon a un únic usuari, però les següents relacions podem comprobar com per exemple un servidor pot tenir diversos processos (*return $this->;;hasMany(Pid::class);*), i així amb els moduls **net**, **Disk**, **Cpu**, **Mem** i **Net**.
 
 \lstinputlisting[language=php , caption="Server.php"]{./Moni/app/Server.php}
 
 ##Net, Pid, Disk, Cpu, Mem, Net
 
-En aquests moduls practicament farem el mateix en tots. De tota la informació que ens arriba agafem la que ens sigui necessaria segons el modul, i fem la serva relació amb la resta de moduls. Per exemple en el modul **Disk** ens interes el seu espai lliure, total, ocupat i el percentatge corresponent, i despres fem la relacio amb el modul **Server** i **Time**
+En aquests mòduls pràcticament farem el mateix en tots. De tota la informació que ens arriba agafem la que ens sigui necessària segons el modul, i fem la serva relació amb la resta de mòduls. Per exemple en el mòdul **Disk** ens interès el seu espai lliure, total, ocupat i el percentatge corresponent, i després fem la relació amb el mòdul **Server** i **Time**
 
 \lstinputlisting[language=php , caption="Disk.php"]{./Moni/app/Disk.php}
 
