@@ -24,7 +24,7 @@ Aquest arxiu instal·larà a grans trets: Python3.6 en l'última versió disponi
 
 #Python
 
-Aprofitant la llibreria de psutils, obtenim les dades del servidor. Amb la comanda psutil.disk_partitions() obtenim les dades del disc, amb psutil.net_connections() obtenim dades de la connexió, amb la comanda psutil.virtual_memory() i amb psutil.net_if_addrs() obtenim dades de les adreces de la xarxa.
+Aprofitant la llibreria de psutils, obtenim les dades del servidor. Amb la comanda psutil.disk_partitions() obtenim les dades del disc, amb psutil.net_connections() obtenim dades de la connexió, amb la comanda psutil.virtual_memory() i amb psutil.net_if_addrs() obtenim dades de les adreces de la xarxa. Finalment, aprofitem la llibreria json per enviar les dades.
 
 #PHP
 
