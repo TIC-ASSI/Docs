@@ -34,6 +34,8 @@ Principalment usarem la comanda: php artisan *comand* per poder fer moltes coses
 
 Un cop ens van arribant les dades des de l'arxiu de python, les hem de classificar segons el que vulguem veure. Hem creat diferents mòduls on a cada mòdul farem diferents relacions i classificarem les dades:
 
+![Esquema moduls](ASSI.jpeg){width="500px"}
+
 ##User
 
 Principalment tenim el modul **user**, on demanem a l'usuari que ens doni un nom, el seu email i la contrasenya, i crearem un token (anoment api_token).
@@ -56,11 +58,9 @@ En aquests mòduls pràcticament farem el mateix en tots. De tota la informació
 
 ##Address
 
+Mostra totes les adreçes IP del teu servido amb les interficies corresponent. Aquest és relaciona amb el modul **Net**, ja que una xarxa pot tenir diferents IP.
+
 \lstinputlisting[language=php , caption="Address.php"]{./Moni/app/Address.php}
-
-##Time
-
-\lstinputlisting[language=php , caption="Time.php"]{./Moni/app/Time.php}
 
 ##Controller
 
